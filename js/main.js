@@ -1,4 +1,9 @@
+// Programme Shi Fu Mi
+
+// *** Display a wellcome message
 alert("Bonjour et bienvennue");
-var userChoice = prompt("Choisissez eau ou coca");
-console.log(userChoice);
-alert("Vous avez choisi " + userChoice);
+
+
+// *** Get user name
+var userName = prompt("Veuillez entre votre nom");
+
