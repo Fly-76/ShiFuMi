@@ -28,6 +28,12 @@ function getUserChoice(){
     return uChoice;
 }
 
+// *** Chesk if user want to restart the game
+function askReplay() {
+    var endOfGame = prompt(userName + ", voulez vous recommencer ? (o/n)", "n").toLowerCase();
+    return (endOfGame == "o");
+}
+
 // *** Generate an integer value in the range min, max
 function randomInt(min, max)
 {
@@ -35,26 +41,32 @@ function randomInt(min, max)
 }
 
 // *** Repeat code until one player reach 3 victory
-var score = { "user": 0, "computer": 0 }
+// *** Allow the player to restart the game when finished
+var finished = false;
+while (!finished) {
+    var score = { "user": 0, "computer": 0 }
+    while (score.user<3 && score.computer<3) {
 
-while (score.user<3 && score.computer<3) {
+        // *** Input user choice
+        var userChoice = getUserChoice();
 
-    // *** Input user choice
-    var userChoice = getUserChoice();
+        // *** Computer choice
+        var computerChoice = possibleChoice[randomInt(0,2)];
+        alert("Choix de l'ordinateur : " + computerChoice);
 
-    // *** Computer choice
-    var computerChoice = possibleChoice[randomInt(0,2)];
-    alert("Choix de l'ordinateur : " + computerChoice);
+        // *** Check result, update score array
+        var winningCombination = ["pierreciseaux", "feuillepierre", "ciseauxfeuille"];
+        var combination = userChoice + computerChoice;
 
-    // *** Check result, update score array
-    var winningCombination = ["pierreciseaux", "feuillepierre", "ciseauxfeuille"];
-    var combination = userChoice + computerChoice;
+        if (userChoice===computerChoice);
+        else if (winningCombination.includes(combination)) score.user++;
+        else score.computer++;
+    }
 
-    if (userChoice===computerChoice);
-    else if (winningCombination.includes(combination)) score.user++;
-    else score.computer++;
+    // Check final score and display the winner
+    if (score.user==3) alert("Bravo " + userName + ", vous avez gagné");
+    else alert(userName + ", vous avez perdu");
+
+    // Ask for a new game
+    finished = !askReplay();
 }
-
-// Check final score and display the winner
-if (score.user==3) alert("Bravo " + userName + ", vous avez gagné");
-else alert(userName + ", vous avez perdu");
