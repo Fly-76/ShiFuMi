@@ -12,7 +12,9 @@ var score = { "user": 0, "computer": 0 }
 while (score.user<3 && score.computer<3) {
 
     // *** Input user choice
-    var userChoice = prompt("Veuillez entrer choisir : pierre, feuille ou ciseaux");
+    var userChoice = prompt(userName + ", veuillez choisir : pierre, feuille ou ciseaux?\nScore actuel : \t" + 
+                            userName + " " + score.user +
+                            " \t computer " + score.computer);
 
     // *** Computer choice
     function entierAleatoire(min, max)
@@ -38,5 +40,5 @@ while (score.user<3 && score.computer<3) {
     }
 
 // Check final score and display the winner
-if (score.user==3) alert("Vous avez gagné");
-else alert("Vous avez perdu");
+if (score.user==3) alert("Bravo " + userName + ", vous avez gagné");
+else alert(userName + ", vous avez perdu");
